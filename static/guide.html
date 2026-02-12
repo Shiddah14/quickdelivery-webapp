@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maisha Mart - Setup & User Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1B1B6F;
+            --primary-red: #E31837;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-500: #6c757d;
+            --gray-800: #343a40;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--gray-800);
+            line-height: 1.7;
+            background: white;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body { font-size: 11pt; }
+            .page-break { page-break-before: always; }
+            .no-print { display: none !important; }
+            .cover-page { page-break-after: always; }
+            .step-section { page-break-inside: avoid; }
+            .mockup { break-inside: avoid; }
+        }
+
+        /* ===== COVER PAGE ===== */
+        .cover-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #2d2d8f 50%, var(--primary-red) 100%);
+            color: white;
+            padding: 3rem;
+        }
+
+        .cover-logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .cover-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cover-title span { color: #ff6b6b; }
+
+        .cover-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .cover-doc-title {
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 1rem 3rem;
+            border: 3px solid rgba(255,255,255,0.5);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .cover-info {
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc {
+            padding: 2rem 0;
+        }
+
+        .toc h2 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--primary-red);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toc-list .section-num {
+            background: var(--primary-blue);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+        }
+
+        .toc-list .section-title {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .toc-list .page-num {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+
+        /* ===== SECTION ===== */
+        .section-header {
+            margin: 3rem 0 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-red);
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+        }
+
+        .section-header .section-badge {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== STEP ===== */
+        .step-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            background: var(--gray-100);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-right: 0.75rem;
+        }
+
+        .step-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            display: inline;
+            vertical-align: middle;
+        }
+
+        .step-desc {
+            margin-top: 1rem;
+            color: var(--gray-500);
+            font-size: 0.95rem;
+        }
+
+        /* ===== MOCKUP (Visual Reference) ===== */
+        .mockup {
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--gray-300);
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .mockup-header {
+            background: var(--gray-200);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .mockup-dot.red { background: #ff5f56; }
+        .mockup-dot.yellow { background: #ffbd2e; }
+        .mockup-dot.green { background: #27c93f; }
+
+        .mockup-url {
+            flex: 1;
+            background: white;
+            border-radius: 6px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-left: 0.5rem;
+        }
+
+        .mockup-body {
+            padding: 1.5rem;
+        }
+
+        .mockup-label {
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-style: italic;
+            margin-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ===== MOCKUP INTERNAL ELEMENTS ===== */
+        .mock-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .mock-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+        }
+
+        .mock-logo span { color: var(--primary-red); }
+
+        .mock-nav-btns {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .mock-btn {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: none;
+            cursor: default;
+        }
+
+        .mock-btn.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .mock-btn.inactive {
+            background: var(--gray-100);
+            color: var(--gray-800);
+        }
+
+        .mock-btn.cart-active {
+            background: var(--gray-100);
+            color: var(--gray-800);
+            position: relative;
+        }
+
+        .mock-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mock-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .mock-hero h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .mock-hero p { font-size: 0.75rem; opacity: 0.85; }
+
+        .mock-search {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .mock-search-input {
+            flex: 1;
+            padding: 0.4rem 0.6rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            font-family: inherit;
+        }
+
+        .mock-search-select {
+            padding: 0.4rem 0.6rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            background: white;
+            font-family: inherit;
+        }
+
+        .mock-depts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mock-dept {
+            padding: 0.6rem;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .mock-dept .icon { font-size: 1.3rem; }
+        .mock-dept .name { font-size: 0.6rem; font-weight: 600; display: block; margin-top: 0.2rem; }
+
+        .mock-products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .mock-product {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .mock-product-img {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--gray-100);
+        }
+
+        .mock-product-info {
+            padding: 0.5rem;
+        }
+
+        .mock-product-name { font-size: 0.7rem; font-weight: 600; }
+        .mock-product-price { font-size: 0.8rem; font-weight: 700; color: var(--primary-blue); }
+
+        .mock-add-btn {
+            padding: 0.2rem 0.5rem;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            cursor: default;
+        }
+
+        .mock-product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+
+        /* Cart Mockup */
+        .mock-cart-item {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem;
+            border-bottom: 1px solid var(--gray-200);
+            gap: 0.5rem;
+        }
+
+        .mock-cart-item .emoji { font-size: 1.3rem; }
+        .mock-cart-item .details { flex: 1; }
+        .mock-cart-item .name { font-size: 0.8rem; font-weight: 600; }
+        .mock-cart-item .price { font-size: 0.7rem; color: var(--gray-500); }
+        .mock-cart-item .qty { font-size: 0.75rem; font-weight: 600; }
+        .mock-cart-item .total { font-size: 0.85rem; font-weight: 700; color: var(--primary-blue); }
+
+        .mock-qty-btn {
+            width: 22px;
+            height: 22px;
+            border: 1px solid var(--gray-200);
+            border-radius: 4px;
+            background: white;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+        }
+
+        .mock-cart-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            font-weight: 700;
+        }
+
+        .mock-cart-total .amount { color: var(--primary-red); font-size: 1.1rem; }
+
+        .mock-checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 0.6rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+            cursor: default;
+        }
+
+        .mock-whatsapp-btn {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            cursor: default;
+        }
+
+        /* Checkout Mockup */
+        .mock-form-group {
+            margin-bottom: 0.75rem;
+        }
+
+        .mock-form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .mock-form-group input,
+        .mock-form-group textarea,
+        .mock-form-group select {
+            width: 100%;
+            padding: 0.4rem 0.6rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-family: inherit;
+        }
+
+        .mock-form-group textarea {
+            min-height: 40px;
+            resize: none;
+        }
+
+        .mock-payment-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .mock-payment-opt {
+            flex: 1;
+            padding: 0.5rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            text-align: center;
+            cursor: default;
+        }
+
+        .mock-payment-opt.selected {
+            border-color: var(--primary-blue);
+            background: rgba(27,27,111,0.05);
+        }
+
+        .mock-payment-opt .icon { font-size: 1.2rem; }
+        .mock-payment-opt .label { font-size: 0.7rem; font-weight: 500; }
+
+        .mock-place-order-btn {
+            display: block;
+            width: 100%;
+            padding: 0.6rem;
+            background: linear-gradient(135deg, var(--success), #20c997);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 0.75rem;
+            cursor: default;
+        }
+
+        /* Admin Mockup */
+        .mock-admin-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mock-stat {
+            background: white;
+            border-radius: 8px;
+            padding: 0.6rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .mock-stat .icon { font-size: 1.2rem; }
+        .mock-stat .value { font-size: 1rem; font-weight: 700; color: var(--primary-blue); }
+        .mock-stat .label { font-size: 0.6rem; color: var(--gray-500); }
+
+        .mock-product-row {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            background: var(--gray-100);
+            border-radius: 6px;
+            margin-bottom: 0.3rem;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .mock-product-row .actions { margin-left: auto; display: flex; gap: 0.3rem; }
+
+        .mock-edit-btn {
+            padding: 0.2rem 0.5rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            cursor: default;
+        }
+
+        .mock-delete-btn {
+            padding: 0.2rem 0.5rem;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            cursor: default;
+        }
+
+        /* Order Mockup */
+        .mock-order {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            margin-bottom: 0.75rem;
+        }
+
+        .mock-order-header {
+            padding: 0.5rem 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mock-order-header.pending { background: #fff3cd; }
+        .mock-order-header.completed { background: #d4edda; }
+
+        .mock-order-id { font-weight: 700; font-size: 0.8rem; }
+
+        .mock-status {
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .mock-status.pending { background: var(--warning); color: var(--gray-800); }
+        .mock-status.completed { background: var(--success); }
+
+        .mock-order-body {
+            padding: 0.75rem;
+            font-size: 0.75rem;
+        }
+
+        .mock-order-actions {
+            display: flex;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+
+        .mock-action-btn {
+            padding: 0.25rem 0.6rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            cursor: default;
+            color: white;
+        }
+
+        .mock-action-btn.process { background: var(--info); }
+        .mock-action-btn.complete { background: var(--success); }
+        .mock-action-btn.cancel { background: var(--danger); }
+
+        /* Success Modal Mockup */
+        .mock-modal-overlay {
+            background: rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mock-modal {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            max-width: 280px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .mock-modal .check { font-size: 2.5rem; color: var(--success); }
+        .mock-modal h4 { color: var(--success); margin: 0.5rem 0; }
+        .mock-modal p { font-size: 0.75rem; color: var(--gray-500); }
+
+        .mock-modal .ref {
+            background: var(--gray-100);
+            padding: 0.4rem;
+            border-radius: 6px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .mock-modal .continue-btn {
+            padding: 0.4rem 1.5rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            cursor: default;
+        }
+
+        /* Terminal Mockup */
+        .mock-terminal {
+            background: #1e1e1e;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .mock-terminal-header {
+            background: #323232;
+            padding: 0.4rem 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .mock-terminal-body {
+            padding: 1rem;
+            color: #d4d4d4;
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .mock-terminal .prompt { color: #4ec9b0; }
+        .mock-terminal .command { color: #dcdcaa; }
+        .mock-terminal .output { color: #9cdcfe; }
+        .mock-terminal .success { color: #6a9955; }
+        .mock-terminal .url { color: #ce9178; }
+
+        /* ===== CALLOUT ===== */
+        .callout {
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .callout.tip {
+            background: #d4edda;
+            border-left: 4px solid var(--success);
+        }
+
+        .callout.warning {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+        }
+
+        .callout.info {
+            background: #d1ecf1;
+            border-left: 4px solid var(--info);
+        }
+
+        .callout .callout-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        /* ===== ARROW ANNOTATION ===== */
+        .annotation {
+            display: inline-block;
+            background: var(--primary-red);
+            color: white;
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            position: relative;
+            margin: 0.2rem;
+        }
+
+        .annotation::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--primary-red);
+        }
+
+        .annotation.left::after {
+            left: 15px;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            border: 3px solid var(--primary-red);
+            border-radius: 6px;
+            padding: 2px;
+            display: inline-block;
+        }
+
+        .highlight-outline {
+            outline: 3px solid var(--primary-red);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* ===== PRINT BTN ===== */
+        .print-btn-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+        }
+
+        .print-btn {
+            padding: 1rem 2rem;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(227,24,55,0.4);
+            transition: all 0.3s;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(227,24,55,0.5);
+        }
+    </style>
+</head>
+<body>
+
+<!-- PRINT BUTTON -->
+<div class="print-btn-container no-print">
+    <button class="print-btn" onclick="window.print()">&#128424; Save as PDF (Ctrl+P)</button>
+</div>
+
+<!-- ===================== COVER PAGE ===================== -->
+<div class="cover-page">
+    <div class="cover-logo">&#128722;</div>
+    <div class="cover-title">Maisha<span>Mart</span></div>
+    <div class="cover-subtitle">Where life begins</div>
+    <div class="cover-doc-title">&#128214; Setup & User Guide</div>
+    <div class="cover-info">
+        <p>Complete Step-by-Step Instructions</p>
+        <p>With Visual References</p>
+        <p style="margin-top: 1rem;">Version 1.0 &bull; 2025</p>
+    </div>
+</div>
+
+<!-- ===================== CONTENT ===================== -->
+<div class="content">
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc page-break">
+        <h2>&#128203; Table of Contents</h2>
+        <ul class="toc-list">
+            <li><span class="section-num">1</span><span class="section-title">Requirements & Setup</span><span class="page-num">Opening the terminal, installing, running</span></li>
+            <li><span class="section-num">2</span><span class="section-title">Homepage & Navigation</span><span class="page-num">Understanding the layout</span></li>
+            <li><span class="section-num">3</span><span class="section-title">Browsing Products</span><span class="page-num">Departments, search, sort</span></li>
+            <li><span class="section-num">4</span><span class="section-title">Adding to Cart</span><span class="page-num">Add items, adjust quantities</span></li>
+            <li><span class="section-num">5</span><span class="section-title">Shopping Cart</span><span class="page-num">View cart, WhatsApp order</span></li>
+            <li><span class="section-num">6</span><span class="section-title">Checkout & Placing an Order</span><span class="page-num">Fill delivery details, pay</span></li>
+            <li><span class="section-num">7</span><span class="section-title">Order Confirmation</span><span class="page-num">Success screen, reference number</span></li>
+            <li><span class="section-num">8</span><span class="section-title">Admin Login</span><span class="page-num">Accessing the admin panel</span></li>
+            <li><span class="section-num">9</span><span class="section-title">Admin Dashboard</span><span class="page-num">Stats, product management</span></li>
+            <li><span class="section-num">10</span><span class="section-title">Managing Orders</span><span class="page-num">View, process, complete, export</span></li>
+        </ul>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 1</span>
+            <h2>&#128187; Requirements & Setup</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Open Your Terminal / Command Prompt</span>
+            <p class="step-desc">
+                <strong>Windows:</strong> Press <code>Win + R</code>, type <code>cmd</code>, press Enter<br>
+                <strong>Mac:</strong> Press <code>Cmd + Space</code>, type <code>Terminal</code>, press Enter<br>
+                <strong>Linux:</strong> Press <code>Ctrl + Alt + T</code>
+            </p>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">2</span>
+            <span class="step-title">Navigate to the Project Folder</span>
+            <div class="mock-terminal">
+                <div class="mock-terminal-header">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                </div>
+                <div class="mock-terminal-body">
+                    <span class="prompt">$ </span><span class="command">cd quickdelivery-webapp</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">3</span>
+            <span class="step-title">Install Dependencies</span>
+            <div class="mock-terminal">
+                <div class="mock-terminal-header">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                </div>
+                <div class="mock-terminal-body">
+                    <span class="prompt">$ </span><span class="command">pip install fastapi uvicorn</span><br>
+                    <span class="output">Collecting fastapi...</span><br>
+                    <span class="success">Successfully installed fastapi-0.115.0 uvicorn-0.30.0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">4</span>
+            <span class="step-title">Start the Web Server</span>
+            <div class="mock-terminal">
+                <div class="mock-terminal-header">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                </div>
+                <div class="mock-terminal-body">
+                    <span class="prompt">$ </span><span class="command">uvicorn main:app --reload</span><br>
+                    <span class="output">INFO:     Uvicorn running on</span> <span class="url">http://127.0.0.1:8000</span><br>
+                    <span class="success">INFO:     Application startup complete.</span>
+                </div>
+            </div>
+            <div class="callout tip">
+                <div class="callout-title">&#9989; Tip</div>
+                Leave this terminal window open while using the website. Press <code>Ctrl + C</code> to stop the server.
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">5</span>
+            <span class="step-title">Open the Website in Your Browser</span>
+            <p class="step-desc">Open any browser (Chrome, Firefox, Safari) and go to:</p>
+            <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px; margin-top: 0.75rem;">
+                <div style="display:inline-block; padding: 0.5rem 2rem; border: 2px solid var(--primary-blue); border-radius: 8px; font-size: 1.2rem; font-weight: 700; color: var(--primary-blue);">
+                    http://localhost:8000
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 2</span>
+            <h2>&#127978; Homepage & Navigation</h2>
+        </div>
+
+        <p>When the website loads, you'll see the main store page:</p>
+
+        <div class="mockup">
+            <div class="mockup-header">
+                <span class="mockup-dot red"></span>
+                <span class="mockup-dot yellow"></span>
+                <span class="mockup-dot green"></span>
+                <div class="mockup-url">localhost:8000</div>
+            </div>
+            <div class="mockup-body" style="background: #FFF8F0;">
+                <!-- Navbar -->
+                <div style="margin-bottom: 0.3rem; text-align: right;">
+                    <span class="annotation left">&#9312; Logo - Click to go Home</span>
+                    <span class="annotation">&#9313; Navigation Buttons</span>
+                </div>
+                <div class="mock-navbar">
+                    <div>
+                        <span class="mock-logo">Maisha<span>Mart</span></span>
+                        <div style="font-size: 0.6rem; color: var(--primary-red); font-style: italic;">Where life begins</div>
+                    </div>
+                    <div class="mock-nav-btns">
+                        <span class="mock-btn active">&#127978; Shop</span>
+                        <span class="mock-btn cart-active">&#128722; Cart <span class="mock-badge">3</span></span>
+                        <span class="mock-btn inactive">&#9881; Admin</span>
+                    </div>
+                </div>
+
+                <!-- Hero -->
+                <div class="mock-hero">
+                    <h3>Welcome to Maisha Mart</h3>
+                    <p>Quality products at affordable prices &bull; Kakamega's favorite supermarket</p>
+                </div>
+            </div>
+            <span class="mockup-label">Figure 2.1 - Homepage header with navigation and hero banner</span>
+        </div>
+
+        <div class="callout info">
+            <div class="callout-title">&#128161; Navigation Guide</div>
+            <strong>&#127978; Shop</strong> &mdash; Browse and search all products<br>
+            <strong>&#128722; Cart</strong> &mdash; View items you've added (badge shows item count)<br>
+            <strong>&#9881; Admin</strong> &mdash; Access the admin panel (password required)
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 3</span>
+            <h2>&#128270; Browsing Products</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Browse by Department</span>
+            <p class="step-desc">Click any department card to filter products by category.</p>
+
+            <div class="mockup">
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="margin-bottom: 0.3rem;"><span class="annotation">Click any department</span></div>
+                    <div class="mock-depts">
+                        <div class="mock-dept"><span class="icon">&#129388;</span><span class="name">Vegetables</span></div>
+                        <div class="mock-dept"><span class="icon">&#127822;</span><span class="name">Fruits</span></div>
+                        <div class="mock-dept"><span class="icon">&#129371;</span><span class="name">Dairy & Eggs</span></div>
+                        <div class="mock-dept"><span class="icon">&#129385;</span><span class="name">Meat & Fish</span></div>
+                        <div class="mock-dept"><span class="icon">&#127838;</span><span class="name">Bakery</span></div>
+                        <div class="mock-dept"><span class="icon">&#129380;</span><span class="name">Beverages</span></div>
+                        <div class="mock-dept"><span class="icon">&#127968;</span><span class="name">Household</span></div>
+                        <div class="mock-dept"><span class="icon">&#128241;</span><span class="name">Electronics</span></div>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 3.1 - Department category cards</span>
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">2</span>
+            <span class="step-title">Search & Filter Products</span>
+            <p class="step-desc">Use the search bar to find specific products. Use the dropdowns to filter by department or sort by price/name.</p>
+
+            <div class="mockup">
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="margin-bottom: 0.3rem;">
+                        <span class="annotation left">&#9312; Type product name</span>
+                        <span class="annotation">&#9313; Select department</span>
+                        <span class="annotation">&#9314; Sort by</span>
+                    </div>
+                    <div class="mock-search">
+                        <div class="mock-search-input">&#128269; Search products... e.g. "milk"</div>
+                        <div class="mock-search-select">All Departments &#9660;</div>
+                        <div class="mock-search-select">Sort By &#9660;</div>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 3.2 - Search bar with department filter and sort options</span>
+            </div>
+
+            <div class="callout tip">
+                <div class="callout-title">&#9989; Sort Options</div>
+                <strong>Price: Low to High</strong> &mdash; Budget-friendly items first<br>
+                <strong>Price: High to Low</strong> &mdash; Premium items first<br>
+                <strong>Name: A to Z</strong> &mdash; Alphabetical order
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 4</span>
+            <h2>&#128722; Adding Products to Cart</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Click the "+ Add" Button on Any Product</span>
+            <p class="step-desc">Each product card shows the name, price, unit, and an "Add" button. Click it to add to your cart.</p>
+
+            <div class="mockup">
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div class="mock-products">
+                        <div class="mock-product">
+                            <div class="mock-product-img">&#127813;</div>
+                            <div class="mock-product-info">
+                                <div style="font-size: 0.6rem; color: #2D6A4F; background: #2D6A4F20; display: inline-block; padding: 0.1rem 0.4rem; border-radius: 8px;">Fresh Vegetables</div>
+                                <div class="mock-product-name">Tomatoes</div>
+                                <div style="font-size: 0.65rem; color: var(--gray-500);">per kg</div>
+                                <div class="mock-product-footer">
+                                    <span class="mock-product-price">KSh 80</span>
+                                    <div class="highlight-box"><span class="mock-add-btn">+ Add</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mock-product">
+                            <div class="mock-product-img">&#129477;</div>
+                            <div class="mock-product-info">
+                                <div style="font-size: 0.6rem; color: #2D6A4F; background: #2D6A4F20; display: inline-block; padding: 0.1rem 0.4rem; border-radius: 8px;">Fresh Vegetables</div>
+                                <div class="mock-product-name">Onions</div>
+                                <div style="font-size: 0.65rem; color: var(--gray-500);">per kg</div>
+                                <div class="mock-product-footer">
+                                    <span class="mock-product-price">KSh 60</span>
+                                    <span class="mock-add-btn">+ Add</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mock-product">
+                            <div class="mock-product-img">&#129388;</div>
+                            <div class="mock-product-info">
+                                <div style="font-size: 0.6rem; color: #2D6A4F; background: #2D6A4F20; display: inline-block; padding: 0.1rem 0.4rem; border-radius: 8px;">Fresh Vegetables</div>
+                                <div class="mock-product-name">Cabbage</div>
+                                <div style="font-size: 0.65rem; color: var(--gray-500);">per piece</div>
+                                <div class="mock-product-footer">
+                                    <span class="mock-product-price">KSh 50</span>
+                                    <span class="mock-add-btn">+ Add</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 0.5rem;">
+                        <span class="annotation">Click the red "+ Add" button</span>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 4.1 - Product cards with Add to Cart button highlighted</span>
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">2</span>
+            <span class="step-title">You'll See a Green Confirmation</span>
+            <p class="step-desc">A green notification appears at the top-right: <strong>"Tomatoes added to cart!"</strong></p>
+            <div style="display: inline-block; background: var(--success); color: white; padding: 0.5rem 1rem; border-radius: 8px; margin-top: 0.5rem; font-size: 0.9rem;">
+                &#10003; Tomatoes added to cart!
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">3</span>
+            <span class="step-title">The Cart Badge Updates</span>
+            <p class="step-desc">The cart button in the navigation shows the number of items.</p>
+            <div style="display: inline-block; padding: 0.4rem 1rem; background: var(--gray-100); border-radius: 20px; position: relative; margin-top: 0.5rem;">
+                &#128722; Cart
+                <span style="position: absolute; top: -6px; right: -6px; background: var(--primary-red); color: white; width: 20px; height: 20px; border-radius: 50%; font-size: 0.7rem; display: flex; align-items: center; justify-content: center;">3</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 5</span>
+            <h2>&#128722; Shopping Cart</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Click "Cart" in the Navigation Bar</span>
+            <p class="step-desc">This opens your shopping cart showing all added items.</p>
+
+            <div class="mockup">
+                <div class="mockup-header">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <div class="mockup-url">localhost:8000 - Cart</div>
+                </div>
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 1rem;">&#128722; Your Cart</div>
+                    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+                        <div class="mock-cart-item">
+                            <span class="emoji">&#127813;</span>
+                            <div class="details">
+                                <div class="name">Tomatoes</div>
+                                <div class="price">KSh 80 / kg</div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.3rem;">
+                                <span class="annotation" style="font-size:0.6rem;">&#9312; Decrease</span><br>
+                                <span class="mock-qty-btn">&minus;</span>
+                                <span class="qty" style="width:24px; text-align:center;">2</span>
+                                <span class="mock-qty-btn">+</span>
+                                <span class="annotation" style="font-size:0.6rem;">&#9313; Increase</span>
+                            </div>
+                            <span class="total">KSh 160</span>
+                            <span style="color: var(--danger); cursor:default;">&#10005;</span>
+                        </div>
+                        <div class="mock-cart-item">
+                            <span class="emoji">&#129371;</span>
+                            <div class="details">
+                                <div class="name">Fresh Milk (500ml)</div>
+                                <div class="price">KSh 60 / pc</div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.3rem;">
+                                <span class="mock-qty-btn">&minus;</span>
+                                <span class="qty" style="width:24px; text-align:center;">3</span>
+                                <span class="mock-qty-btn">+</span>
+                            </div>
+                            <span class="total">KSh 180</span>
+                            <span style="color: var(--danger); cursor:default;">&#10005;</span>
+                        </div>
+                        <div class="mock-cart-item">
+                            <span class="emoji">&#127838;</span>
+                            <div class="details">
+                                <div class="name">White Bread</div>
+                                <div class="price">KSh 60 / loaf</div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.3rem;">
+                                <span class="mock-qty-btn">&minus;</span>
+                                <span class="qty" style="width:24px; text-align:center;">1</span>
+                                <span class="mock-qty-btn">+</span>
+                            </div>
+                            <span class="total">KSh 60</span>
+                            <span style="color: var(--danger); cursor:default;">&#10005;</span>
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; margin-top: 0.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+                        <div class="mock-cart-total">
+                            <span>Total</span>
+                            <span class="amount">KSh 400</span>
+                        </div>
+                        <div class="highlight-box" style="display:block;"><div class="mock-checkout-btn">Proceed to Checkout &#8594;</div></div>
+                        <div class="mock-whatsapp-btn">&#128172; Order via WhatsApp</div>
+                    </div>
+                    <div style="text-align: center; margin-top: 0.5rem;">
+                        <span class="annotation">&#9314; Click to checkout OR order via WhatsApp</span>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 5.1 - Shopping cart with items, quantities, and checkout options</span>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <div class="callout-title">&#128172; WhatsApp Ordering</div>
+            Click "Order via WhatsApp" to instantly send your full order list to Maisha Mart's WhatsApp number. Great for customers who prefer chatting directly!
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 6</span>
+            <h2>&#128230; Checkout & Placing an Order</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Fill in the Checkout Form</span>
+            <p class="step-desc">After clicking "Proceed to Checkout", fill in all required fields:</p>
+
+            <div class="mockup">
+                <div class="mockup-header">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <div class="mockup-url">localhost:8000 - Checkout</div>
+                </div>
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 1rem;">&#128230; Checkout</div>
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+                        <h4 style="margin-bottom: 0.75rem;">Delivery Details</h4>
+
+                        <div class="mock-form-group">
+                            <label>&#9312; Full Name *</label>
+                            <input type="text" value="John Ochieng" style="border-color: var(--primary-blue);">
+                        </div>
+
+                        <div class="mock-form-group">
+                            <label>&#9313; Phone Number (M-Pesa) *</label>
+                            <input type="text" value="0712 345 678" style="border-color: var(--primary-blue);">
+                        </div>
+
+                        <div class="mock-form-group">
+                            <label>&#9314; Delivery Area *</label>
+                            <select style="border-color: var(--primary-blue);">
+                                <option>Kakamega Town</option>
+                            </select>
+                        </div>
+
+                        <div class="mock-form-group">
+                            <label>&#9315; Address / Landmark *</label>
+                            <textarea style="border-color: var(--primary-blue);">Near Kakamega Primary School, opposite the blue gate</textarea>
+                        </div>
+
+                        <div class="mock-form-group">
+                            <label>&#9316; Payment Method</label>
+                            <div class="mock-payment-options">
+                                <div class="mock-payment-opt selected" style="border-width: 3px;">
+                                    <div class="icon">&#128241;</div>
+                                    <div class="label">M-Pesa</div>
+                                </div>
+                                <div class="mock-payment-opt">
+                                    <div class="icon">&#128181;</div>
+                                    <div class="label">Cash on Delivery</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--gray-100); border-radius: 8px; padding: 0.75rem; margin-top: 0.75rem;">
+                            <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-bottom: 0.3rem;"><span>Items (3)</span><span>KSh 400</span></div>
+                            <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-bottom: 0.3rem;"><span>Delivery</span><span style="color: var(--gray-500);">KSh 100</span></div>
+                            <div style="display:flex; justify-content:space-between; font-weight:700; font-size: 1rem; border-top: 2px solid var(--gray-200); padding-top: 0.5rem; margin-top: 0.3rem;"><span>Total</span><span style="color: var(--primary-red);">KSh 500</span></div>
+                        </div>
+
+                        <div class="highlight-box" style="display:block; margin-top: 0.75rem;"><div class="mock-place-order-btn">&#10003; Place Order</div></div>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 6.1 - Checkout form with all fields filled in</span>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <div class="callout-title">&#9888; Important</div>
+            <strong>All fields marked with * are required.</strong> The phone number must be a valid Kenyan number (starting with 07 or 01). Orders over KSh 2,000 get <strong>FREE delivery</strong>!
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 7 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 7</span>
+            <h2>&#10003; Order Confirmation</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Order Success Screen</span>
+            <p class="step-desc">After placing your order, a success popup appears with your order reference number. Save this number!</p>
+
+            <div class="mockup">
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div class="mock-modal-overlay">
+                        <div class="mock-modal">
+                            <div class="check">&#10003;</div>
+                            <h4>Order Placed!</h4>
+                            <p>Your order has been received. We will contact you shortly to confirm delivery.</p>
+                            <div class="ref">MM-A1B2C3D4</div>
+                            <p style="font-size: 0.7rem;">Save this reference number for tracking.</p>
+                            <div class="highlight-box"><button class="mock-modal .continue-btn" style="padding: 0.4rem 1.5rem; background: var(--primary-blue); color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 0.8rem; cursor: default;">Continue Shopping</button></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 7.1 - Order confirmation popup with reference number</span>
+            </div>
+        </div>
+
+        <div class="callout info">
+            <div class="callout-title">&#128203; What Happens Next</div>
+            1. Maisha Mart staff sees your order in the Admin panel<br>
+            2. They call/WhatsApp you on the phone number you provided<br>
+            3. Your order is prepared and delivered to your address<br>
+            4. Pay via M-Pesa or Cash on Delivery as selected
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 8 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 8</span>
+            <h2>&#128274; Admin Login</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Click "Admin" in the Navigation Bar</span>
+            <p class="step-desc">You'll see the admin login screen.</p>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">2</span>
+            <span class="step-title">Enter the Admin Password</span>
+
+            <div class="mockup">
+                <div class="mockup-header">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <div class="mockup-url">localhost:8000 - Admin</div>
+                </div>
+                <div class="mockup-body" style="background: #FFF8F0; text-align:center;">
+                    <div style="max-width: 300px; margin: 0 auto; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                        <div style="font-size: 3rem;">&#128274;</div>
+                        <h3 style="color: var(--primary-blue); margin: 0.5rem 0 1rem;">Admin Login</h3>
+                        <div class="mock-form-group">
+                            <input type="text" value="maisha2024" style="text-align: center; border-color: var(--primary-blue); font-weight: 600;">
+                        </div>
+                        <div style="text-align: center; margin-top: 0.3rem; margin-bottom: 0.75rem;">
+                            <span class="annotation">Type: maisha2024</span>
+                        </div>
+                        <div class="highlight-box" style="display:block;">
+                            <div style="padding: 0.5rem; background: var(--primary-blue); color: white; border-radius: 8px; font-weight: 600; cursor:default;">Login</div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--gray-500); margin-top: 0.75rem;">Default password: maisha2024</p>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 8.1 - Admin login screen</span>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <div class="callout-title">&#128272; Security Note</div>
+            The default password is <strong>maisha2024</strong>. For a live deployment, this should be changed to a strong, unique password.
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 9 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 9</span>
+            <h2>&#9881; Admin Dashboard</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Dashboard Overview</span>
+            <p class="step-desc">After login, you see statistics and product management tools.</p>
+
+            <div class="mockup">
+                <div class="mockup-header">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <div class="mockup-url">localhost:8000 - Admin Dashboard</div>
+                </div>
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+                        <h3 style="color: var(--primary-blue);">&#9881; Admin Dashboard</h3>
+                        <div style="display:flex; gap:0.3rem;">
+                            <span class="mock-btn active" style="background:var(--primary-red); color:white;">&#128203; View Orders <span style="background:var(--warning);color:var(--gray-800);border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;margin-left:0.3rem;">5</span></span>
+                            <span class="mock-btn inactive">&#128196; Export</span>
+                            <span class="mock-btn inactive">Logout</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 0.3rem;"><span class="annotation left">Business Statistics at a Glance</span></div>
+                    <div class="mock-admin-stats">
+                        <div class="mock-stat"><div class="icon">&#128230;</div><div class="value">56</div><div class="label">Products</div></div>
+                        <div class="mock-stat"><div class="icon">&#128203;</div><div class="value">23</div><div class="label">Orders</div></div>
+                        <div class="mock-stat"><div class="icon">&#9203;</div><div class="value">5</div><div class="label">Pending</div></div>
+                        <div class="mock-stat"><div class="icon">&#128176;</div><div class="value">KSh 45,200</div><div class="label">Revenue</div></div>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 9.1 - Admin dashboard with statistics</span>
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">2</span>
+            <span class="step-title">Add a New Product</span>
+            <p class="step-desc">Scroll down to the "Add New Product" form. Fill in all fields and click "Add Product".</p>
+
+            <div class="mockup">
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+                        <h4 style="margin-bottom: 0.75rem;">&#10133; Add New Product</h4>
+                        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                            <div class="mock-form-group"><input placeholder="Product Name" value="Chapati Flour (2kg)" style="font-size:0.7rem;"></div>
+                            <div class="mock-form-group"><input placeholder="Price (KSh)" value="220" style="font-size:0.7rem;"></div>
+                            <div class="mock-form-group"><select style="font-size:0.7rem;"><option>per pack</option></select></div>
+                            <div class="mock-form-group"><input placeholder="Stock Qty" value="50" style="font-size:0.7rem;"></div>
+                            <div class="mock-form-group"><select style="font-size:0.7rem;"><option>Household &amp; Groceries</option></select></div>
+                            <div class="mock-form-group"><select style="font-size:0.7rem;"><option>&#127806; Rice</option></select></div>
+                        </div>
+                        <div class="highlight-box" style="margin-top: 0.5rem;">
+                            <div style="padding: 0.4rem 1.5rem; background: var(--success); color: white; border-radius: 6px; font-weight: 600; font-size: 0.8rem; display: inline-block; cursor: default;">Add Product</div>
+                        </div>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 9.2 - Add new product form with fields filled in</span>
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">3</span>
+            <span class="step-title">Edit or Delete Existing Products</span>
+            <p class="step-desc">Below the form, all products are listed by department. Use "Edit" or "Delete" buttons.</p>
+
+            <div class="mockup">
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+                        <span style="display:inline-block; padding:0.3rem 0.75rem; background: #2D6A4F15; color: #2D6A4F; border-radius: 6px; font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">&#129388; Fresh Vegetables (8 products)</span>
+                        <div class="mock-product-row">
+                            <span>&#127813;</span>
+                            <span style="flex:1; font-weight:500;">Tomatoes</span>
+                            <span style="color:var(--primary-blue); font-weight:600;">KSh 80/kg</span>
+                            <span style="color:var(--gray-500); font-size:0.7rem;">Stock: 100</span>
+                            <div class="actions">
+                                <span class="annotation" style="font-size: 0.55rem;">Click to modify</span>
+                                <span class="mock-edit-btn">Edit</span>
+                                <span class="mock-delete-btn">Delete</span>
+                            </div>
+                        </div>
+                        <div class="mock-product-row">
+                            <span>&#129477;</span>
+                            <span style="flex:1; font-weight:500;">Onions</span>
+                            <span style="color:var(--primary-blue); font-weight:600;">KSh 60/kg</span>
+                            <span style="color:var(--gray-500); font-size:0.7rem;">Stock: 150</span>
+                            <div class="actions">
+                                <span class="mock-edit-btn">Edit</span>
+                                <span class="mock-delete-btn">Delete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 9.3 - Product management list with Edit and Delete buttons</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 10 ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <span class="section-badge">Section 10</span>
+            <h2>&#128203; Managing Orders</h2>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">1</span>
+            <span class="step-title">Click "View Orders" from the Admin Dashboard</span>
+            <p class="step-desc">This shows all customer orders with their status and details.</p>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">2</span>
+            <span class="step-title">Filter Orders by Status</span>
+            <p class="step-desc">Use the filter buttons at the top to view specific order types.</p>
+
+            <div class="mockup">
+                <div class="mockup-body" style="background: #FFF8F0;">
+                    <div style="display:flex; gap:0.3rem; margin-bottom:1rem; flex-wrap:wrap;">
+                        <span class="mock-btn active" style="background: var(--primary-blue); color: white; font-size: 0.75rem;">All</span>
+                        <span class="mock-btn inactive" style="font-size: 0.75rem;">Pending</span>
+                        <span class="mock-btn inactive" style="font-size: 0.75rem;">Processing</span>
+                        <span class="mock-btn inactive" style="font-size: 0.75rem;">Completed</span>
+                        <span class="mock-btn inactive" style="font-size: 0.75rem;">Cancelled</span>
+                    </div>
+
+                    <div class="mock-order">
+                        <div class="mock-order-header pending">
+                            <span class="mock-order-id">MM-A1B2C3D4 <span style="color:var(--gray-500); font-weight:400; font-size:0.7rem; margin-left:0.5rem;">Feb 12, 2025 at 2:30 PM</span></span>
+                            <span class="mock-status pending">PENDING</span>
+                        </div>
+                        <div class="mock-order-body">
+                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:0.5rem; margin-bottom:0.5rem;">
+                                <div><span style="font-size:0.65rem; color:var(--gray-500); font-weight:600;">Customer</span><div>John Ochieng</div></div>
+                                <div><span style="font-size:0.65rem; color:var(--gray-500); font-weight:600;">Phone</span><div>0712 345 678</div></div>
+                                <div><span style="font-size:0.65rem; color:var(--gray-500); font-weight:600;">Payment</span><div>&#128241; M-Pesa</div></div>
+                                <div><span style="font-size:0.65rem; color:var(--gray-500); font-weight:600;">Address</span><div>Kakamega Town</div></div>
+                            </div>
+                            <div style="background:var(--gray-100); padding:0.5rem; border-radius:6px; font-size:0.75rem;">
+                                <div style="font-weight:600; margin-bottom:0.3rem;">Order Items:</div>
+                                <div style="display:flex; justify-content:space-between;">&#127813; Tomatoes &times; 2 <span>KSh 160</span></div>
+                                <div style="display:flex; justify-content:space-between;">&#129371; Fresh Milk &times; 3 <span>KSh 180</span></div>
+                                <div style="display:flex; justify-content:space-between; font-weight:700; border-top:1px solid var(--gray-200); padding-top:0.3rem; margin-top:0.3rem;">Total <span style="color:var(--primary-red);">KSh 440</span></div>
+                            </div>
+                            <div class="mock-order-actions">
+                                <div class="highlight-box"><span class="mock-action-btn process">Start Processing</span></div>
+                                <span class="mock-action-btn cancel">Cancel</span>
+                                <span style="padding:0.25rem 0.6rem; border:1px solid var(--gray-200); border-radius:4px; font-size:0.65rem; cursor:default;">Delete</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                        <span class="annotation">Order workflow: Pending &#8594; Processing &#8594; Completed</span>
+                    </div>
+                </div>
+                <span class="mockup-label">Figure 10.1 - Order management with status, details, and action buttons</span>
+            </div>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">3</span>
+            <span class="step-title">Process Orders Step-by-Step</span>
+            <p class="step-desc">Follow this order workflow:</p>
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.75rem; flex-wrap: wrap;">
+                <span style="background:#fff3cd; padding:0.4rem 0.8rem; border-radius:8px; font-weight:600; font-size:0.85rem;">&#9203; Pending</span>
+                <span style="font-size:1.2rem;">&#8594;</span>
+                <span style="background:#d1ecf1; padding:0.4rem 0.8rem; border-radius:8px; font-weight:600; font-size:0.85rem;">&#9881; Processing</span>
+                <span style="font-size:1.2rem;">&#8594;</span>
+                <span style="background:#d4edda; padding:0.4rem 0.8rem; border-radius:8px; font-weight:600; font-size:0.85rem;">&#10003; Completed</span>
+            </div>
+            <ul style="margin-top:0.75rem; padding-left:1.5rem; font-size:0.9rem;">
+                <li><strong>Start Processing</strong> &mdash; Click when you begin preparing the order</li>
+                <li><strong>Mark Completed</strong> &mdash; Click when the order has been delivered</li>
+                <li><strong>Cancel</strong> &mdash; Cancel an order if needed</li>
+                <li><strong>Delete</strong> &mdash; Remove the order record permanently</li>
+            </ul>
+        </div>
+
+        <div class="step-section">
+            <span class="step-number">4</span>
+            <span class="step-title">Export Orders to CSV</span>
+            <p class="step-desc">Click the <strong>"Export Orders"</strong> button on the Admin Dashboard to download all orders as a spreadsheet file. You can open this in Excel or Google Sheets for record-keeping and accounting.</p>
+        </div>
+
+        <div class="callout tip">
+            <div class="callout-title">&#128161; Pro Tips for Admins</div>
+            &bull; Check the dashboard regularly for new pending orders<br>
+            &bull; The pending badge on "View Orders" shows how many orders need attention<br>
+            &bull; Export orders weekly for your records<br>
+            &bull; Keep stock quantities updated to show "Low Stock" or "Out of Stock" to customers
+        </div>
+    </div>
+
+    <!-- ==================== QUICK REFERENCE ==================== -->
+    <div class="page-break">
+        <div class="section-header">
+            <h2>&#128218; Quick Reference Card</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; border: 2px solid var(--primary-blue);">
+                <h4 style="color: var(--primary-blue); margin-bottom: 0.75rem;">&#128100; Customer Actions</h4>
+                <ul style="font-size: 0.85rem; padding-left: 1.25rem;">
+                    <li>Browse departments</li>
+                    <li>Search products</li>
+                    <li>Add to cart</li>
+                    <li>Adjust quantities</li>
+                    <li>Order via WhatsApp</li>
+                    <li>Checkout with M-Pesa or Cash</li>
+                </ul>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; border: 2px solid var(--primary-red);">
+                <h4 style="color: var(--primary-red); margin-bottom: 0.75rem;">&#128272; Admin Actions</h4>
+                <ul style="font-size: 0.85rem; padding-left: 1.25rem;">
+                    <li>Login: <code>maisha2024</code></li>
+                    <li>View dashboard stats</li>
+                    <li>Add / Edit / Delete products</li>
+                    <li>Process customer orders</li>
+                    <li>Filter orders by status</li>
+                    <li>Export orders to CSV</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 1.25rem; border: 2px solid var(--success); margin-top: 1rem;">
+            <h4 style="color: var(--success); margin-bottom: 0.75rem;">&#128222; Contact Information</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.9rem;">
+                <div><strong>Phone 1:</strong> +254 712 983 969</div>
+                <div><strong>Phone 2:</strong> +254 773 100 700</div>
+                <div><strong>Location:</strong> Kakamega, Kenya</div>
+                <div><strong>Hours:</strong> 7 AM - 9 PM (Mon-Sat)</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; color: var(--gray-500);">
+            <div style="font-size: 1.3rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 0.25rem;">Maisha<span style="color: var(--primary-red);">Mart</span></div>
+            <div style="font-style: italic; font-size: 0.85rem; color: var(--primary-red);">Where life begins</div>
+            <div style="margin-top: 1rem; font-size: 0.8rem;">&copy; 2025 Maisha Mart Supermarket. All rights reserved.</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
